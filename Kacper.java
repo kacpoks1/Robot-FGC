@@ -89,17 +89,17 @@ public class Kacper extends LinearOpMode {
             String lewy = String.format("%.2f", leftPower);
 
             StringBuilder builder = new StringBuilder();
-            builder.append("<font color='#119af5' face='monospace'>");
+            builder.append("<font color='#119af5' face='Courier New'>");
             builder.append("Status Run Time: " + runtime.toString() + ".\n");
             builder.append("Distance (cm): " + distance + "\n");
             builder.append("</font>");
             
-            builder.append("<font color='#33ff33' face='monospace'>");
+            builder.append("<font color='#33ff33' face='Times New Roman'>");
             builder.append("Aktualna pozycja serwa: " + currentServoPosition + "\n");
             builder.append("Status przycisku: " + magnetic.isPressed() + "\n");
             builder.append("</font>");
             
-            builder.append("<font color='#ff5733' face='monospace'>");
+            builder.append("<font color='#ff5733' face='Georgia, serif'>");
             builder.append("Light Intensity: " + lightIntensity + "\n");
             builder.append("Motors left: " + lewy + " right: " + prawy + "\n");
             builder.append("</font>");
