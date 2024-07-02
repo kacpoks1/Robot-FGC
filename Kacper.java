@@ -18,7 +18,7 @@ import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
-
+import org.firstinspires.ftc.robotcore.external.Telemetry.DisplayFormat;
 
 
 
@@ -65,6 +65,9 @@ public class Kacper extends LinearOpMode {
          rightDrive1.setDirection(DcMotor.Direction.REVERSE);
          rightDrive2.setDirection(DcMotor.Direction.REVERSE);
          
+         
+         telemetry.setDisplayFormat(DisplayFormat.HTML);
+         
         
          waitForStart();
          runtime.reset();
@@ -81,8 +84,6 @@ public class Kacper extends LinearOpMode {
             double turn  = gamepad1.right_stick_x;
             boolean obrót = gamepad1.a;
             boolean wykrycie =  magnetic.isPressed();
-            
-            
             
             
             
@@ -135,28 +136,44 @@ public class Kacper extends LinearOpMode {
             double currentServoPosition = myServo.getPosition();
             
 
-           
-            if (magnetic.isPressed()) {
-                dioda.setPattern(RevBlinkinLedDriver.BlinkinPattern.RED);
-            } else {
-                dioda.setPattern(RevBlinkinLedDriver.BlinkinPattern.BLUE);
-            }
+           String prawy = ((%.2f) + rightPower);
+           String lewy = ((%.2f) + leftPower);
+            
+            
+            
+            StringBuilder builder = new StringBuilder();
+            builder.append("<font color='#119af5' face=monospace>");
+            builder.append("Status Run Time: " + runtime.toString() + ".\n");
+            builder.append("Distance (cm)" + distance + "\n");
+            builder.append("</font>");
+            
+            
+            builder.append("<font color='#33ff33' face=monospace>");
+            builder.append("Aktualna pozycja serwa: "+ currentServoPosition + "\n");
+            builder.append("Status przycisku: " + magnetic.isPressed() + "\n");
+            builder.append("</font>");
+            
+            builder.append("<font color='#ff5733' face='monospace'>");
+            builder.append("Light Intensity: " + lightIntensity + "\n");
+            builder.append("Motors " + "left: " + lewy + "right: "+ prawy + "\n");
+            builder.append("</font>");
+            
+            
+            String myString = builder.toString();
             
             
             
             
-            telemetry.addData("Status", "Run Time: " + runtime.toString());
+            
+            telemetry.addData("Status", "Run Time: " + runtime.toString(), myString);
             telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
             telemetry.addData("Aktualna pozycja serwa", currentServoPosition);
             telemetry.addData("Light Intensity", lightIntensity);
             telemetry.addData("Distance (cm)", String.format("%.2f", distance));
-            if (magnetic.isPressed()) {
-            telemetry.addData("Status", "Przycisk wcisniety");
-            } 
-            else {
-             telemetry.addData("Status", "Przycisk nie wcisniety");
-               }
+            telemetry.addLine(myString);
+         
             telemetry.update();
+            
             
              
             
