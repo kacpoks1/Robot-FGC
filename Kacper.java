@@ -94,13 +94,7 @@ public class Kacper extends LinearOpMode {
             leftPower    = Range.clip(drive + turn, -1.0, 1.0) ;
             rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
             
-            /*if (gamepad1.a){
-               myServo.setPosition(1);
-            }
-            else{
-               myServo.setPosition(0);
-            }
-            */
+            
             
             double distance = sensor.getDistance(DistanceUnit.CM);
             
