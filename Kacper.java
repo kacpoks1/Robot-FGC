@@ -136,8 +136,8 @@ public class Kacper extends LinearOpMode {
             double currentServoPosition = myServo.getPosition();
             
 
-           String prawy = ((%.2f) + rightPower);
-           String lewy = ((%.2f) + leftPower);
+            String prawy = String.format("%.2f", rightPower);
+            String lewy = String.format("%.2f", leftPower);
             
             
             
@@ -165,11 +165,7 @@ public class Kacper extends LinearOpMode {
             
             
             
-            telemetry.addData("Status", "Run Time: " + runtime.toString(), myString);
-            telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
-            telemetry.addData("Aktualna pozycja serwa", currentServoPosition);
-            telemetry.addData("Light Intensity", lightIntensity);
-            telemetry.addData("Distance (cm)", String.format("%.2f", distance));
+            
             telemetry.addLine(myString);
          
             telemetry.update();
